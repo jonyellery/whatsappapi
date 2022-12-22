@@ -4,6 +4,7 @@ const client = new Client();
 const cara = MessageMedia.fromFilePath("./assets/cara.jpeg");
 const coroa = MessageMedia.fromFilePath("./assets/coroa.jpeg");
 const batman = MessageMedia.fromFilePath("./assets/batman.jpg");
+const loki = MessageMedia.fromFilePath("./assets/lady-loki-vintage.jpg");
 const qrcode = require("qrcode-terminal");
 
 const random = () => (Math.random() < 0.5 ? 1 : 0);
@@ -53,6 +54,21 @@ client.on("message_create", async (message) => {
       await chat.sendMessage(batman);
       await chat.sendMessage(text, { mentions });
       chat.sendMessage("https://animetododialoja.com.br/home/485-dc-page-punchers-mcfarlane-batman-8cm-gibi-hq-sil%C3%AAncio-0789803960640.html", {linkPreview:true});
+     }
+    if (msg === "loki vintage marvel legends") {
+      const chat = await message.getChat();
+      let text = "";
+        let mentions = [];
+
+        for(let participant of chat.participants) {
+            const contact = await client.getContactById(participant.id._serialized);
+            
+            mentions.push(contact);
+            text = 'R$ 169,00';
+        } 
+      await chat.sendMessage(loki);
+      await chat.sendMessage(text, { mentions });
+      chat.sendMessage("https://animetododialoja.com.br/home/472-lady-loki-vintage-marvel-legends-hasbro-5010993988259.html");
      }
 });
 // Mention everyone
